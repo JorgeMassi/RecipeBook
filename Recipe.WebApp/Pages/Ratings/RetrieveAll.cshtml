@@ -1,0 +1,29 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Ratings.RetrieveAllModel
+@{
+}
+
+<div>
+	
+	<div>
+		
+		<table class="table table-striped table-dark">
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">Actions</th>
+			</tr>
+			@foreach (var rating in Model.Ratings)
+			{
+				<tr>
+					<td scope="row">@rating.Name<i class="fas fa-star"></i></td>
+					<td>
+						<a class="fa-solid fa-pencil" asp-area="" asp-page="/ratings/update" asp-route-id="@rating.Id"></a> /
+						<a class="fa-solid fa-trash" asp-area="" asp-page="/ratings/delete" asp-route-id="@rating.Id"></a>
+					</td>
+				</tr>
+			}
+		</table>
+    </div>
+</div>
+
+

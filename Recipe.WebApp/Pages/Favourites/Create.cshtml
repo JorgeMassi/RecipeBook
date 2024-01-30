@@ -1,0 +1,21 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Favourites.CreateModel
+@{
+}
+
+@(Model.SessionUser != null)
+{
+<form method="post">
+	<div class="form-group">
+		<label>UserName</label>
+		<input type="text" name="name" class="form-control" readonly placeholder="" asp-for="@Model.SessionUser.UserName">
+	</div>
+	<div class="form-group">
+		<label>Recipe</label>
+		<input type="text" name="name" class="form-control" placeholder="Recipe Title" asp-for="@Model.Favourite.Recipe.Title">
+	</div>
+	<br />
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<br />
+}
