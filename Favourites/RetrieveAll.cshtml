@@ -1,0 +1,27 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Favourites.RetrieveAllModel
+@{
+}
+
+<br />
+<br />
+<table class="table table-striped table-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">User</th>
+        <th scope="col">Recipe</th>
+        <th scope="col">Actions</th>
+    </tr>
+    @foreach (var favourite in Model.Favourites)
+    {
+        <tr>
+            <td scope="row">@favourite.Id</td>
+            <td>@favourite.User.UserName</td>
+            <td>@favourite.Recipe.Title</td>
+            <td>
+                <a class="fa-solid fa-trash" asp-area="" asp-page="/favourites/delete" asp-route-id="@favourite.Id"></a> /
+                <a class="fa-solid fa-heart" asp-area="" asp-page="/favourites/create" asp-route-id="@favourite.Id"> </a>
+            </td>
+        </tr>
+    }
+</table>
