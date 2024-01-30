@@ -1,0 +1,27 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="container-fluid min-vh-100 d-flex flex-column justify-content-center align-items-center gap-4" style="background-image: url('caminho/para/imagem.jpg');">
+    <div class="text-light h-100">
+        @if (Model.SessionUser is null)
+        {
+            <h1 class="text-white mb-0" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">RecipeBook GUEST</h1>
+        }
+        else
+        {
+            <h1 class="text-white mb-0" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">RecipeBook</h1>
+            @if (Model.SessionUser.IsAdmin)
+            {
+                <h1 class="text-white mb-0" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Admin @Model.SessionUser.UserName</h1>
+            }
+            else
+            {
+                <h1 class="text-white mb-0" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">User @Model.SessionUser.UserName</h1>
+            }
+        }
+    </div>
+</div>
+
+

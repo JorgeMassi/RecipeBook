@@ -1,0 +1,31 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Users.UserManagerModel
+@{
+}
+<div id="center-item">
+
+	<div class="center">
+
+		@if (Model.SessionUser.IsAdmin)
+		{
+			<div class="list-group list-group-horizontal flex-row" >
+				<a class="list-group-item" asp-area="" asp-page="/Users/Adm/Retrieveall"> USER ADM</a>
+				<a class="list-group-item" asp-area="" asp-page="/Recipes/Retrieveall"> ALL RECIPES</a>
+				<a class="list-group-item" asp-area="" asp-page="/Ingredients/Retrieveall"> ALL INGREDIENTS</a>
+				<a class="list-group-item" asp-area="" asp-page="/Categories/Retrieveall"> ALL CATEGORIES</a>
+				<a class="list-group-item" asp-area="" asp-page="/Difficulties/Retrieveall"> ALL DIFFICULTIES</a>
+				<a class="list-group-item" asp-area="" asp-page="/Recipes/ToApproved"> TO APROVED</a>
+			</div>
+		}
+		else
+		{
+			<div class="list-group list-group-horizontal flex-row" >
+				<a class="list-group-item" asp-area="" asp-page="/Users/Users/Retrieve" asp-route-id="@Model.SessionUser.Id"> User</a>
+				<a class="list-group-item" asp-area="" asp-page="/favourites/retrieve" asp-route-id="@Model.SessionUser.Id">Favourites</a>
+				<a class="list-group-item" asp-area="" asp-page="/Create/CreateRecipes" asp-route-id="@Model.SessionUser.Id"> New Recipe </a>
+				<a class="list-group-item" asp-area="" asp-page="/Recipes/Retrieve" asp-route-id="@Model.SessionUser.Id">MY Recipes</a>
+			</div>
+		}
+	</div>
+</div>
+

@@ -1,0 +1,26 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Users.CreateModel
+@{
+}
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <form method="post" style="width: 300px; background-color: #ffffff; padding: 20px; border-radius: 5px; box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);">
+        <h2 class="text-center mb-4">New User</h2>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" asp-for="@Model.User.UserName">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" asp-for="@Model.User.Password">
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Name" asp-for="@Model.User.Name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email" asp-for="@Model.User.Email">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+</div>
