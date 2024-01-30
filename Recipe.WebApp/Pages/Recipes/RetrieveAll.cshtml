@@ -1,0 +1,75 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Recipes.RetrieveAllModel
+@{
+}
+
+@if (Model.SessionUser is null || Model.SessionUser != null)
+{
+	
+	<br />
+	<div class="mt-4"></div>
+
+	<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+		@foreach (var recipe in Model.Recipes)
+		{
+			<div class="col">
+				<div class="card h-100">
+					<div class="card-body">
+						<h5 class="card-title">@recipe.Title</h5>
+						<p class="card-text">
+							<strong>Category:</strong> @recipe.Category.Name<br>
+							<strong>Difficulty:</strong> @recipe.Difficulty.Name<br>
+							<strong>Preparation Time:</strong> @recipe.PreparationTime<br>
+							<strong>Preparation Method:</strong> @recipe.PreparationMethod
+						</p>
+						<h6>Ingredients:</h6>
+						<ul class="list-group list-group-flush">
+							@foreach (var ingredient in recipe.IngredientLine)
+							{
+								<li class="list-group-item">
+									<strong>@ingredient.Ingredient.Name:</strong> @ingredient.Qtd @ingredient.Measure.Name
+								</li>
+							}
+						</ul>
+					</div>
+					<div class="card-footer">
+						@if (Model.SessionUser != null)
+						{
+							@if (Model.SessionUser.IsAdmin)
+							{
+								<a asp-area="" asp-page="/recipes/delete" asp-route-id="@recipe.Id" class="btn btn-sm btn-danger">
+									<i class="fa-solid fa-trash"></i> Delete
+								</a>
+								<a asp-area="" asp-page="/recipes/update" asp-route-id="@recipe.Id" class="btn btn-sm btn-primary">
+									<i class="fa-solid fa-pencil"></i> Update
+								</a>
+								<a asp-area="" asp-page="/favourites/createby" asp-route-id="@recipe.Id" class="btn btn-sm btn-info">
+									<i class="fa-solid fa-heart"></i> Favorite
+								</a>
+								<a asp-area="" asp-page="/Reviews/retrieve" asp-route-id="@recipe.Id" class="btn btn-sm btn-success">
+									<i class="fa-solid fa-envelope"></i> Review
+								</a>
+							}
+							else
+							{
+								<a asp-area="" asp-page="/favourites/createby" asp-route-id="@recipe.Id" class="btn btn-sm btn-info">
+									<i class="fa-solid fa-heart"></i> Favorite
+								</a>
+								<a asp-area="" asp-page="/Reviews/retrieve" asp-route-id="@recipe.Id" class="btn btn-sm btn-success">
+									<i class="fa-solid fa-envelope"></i> Review
+								</a>
+							}
+						}
+						else
+						{
+							<a asp-area="" asp-page="/Reviews/retrieve" asp-route-id="@recipe.Id" class="btn btn-sm btn-success">
+								<i class="fa-solid fa-envelope"></i> Review
+							</a>
+						}
+
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+}

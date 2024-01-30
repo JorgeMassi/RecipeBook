@@ -1,0 +1,60 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Recipes.UpdateModel
+@{
+}
+@if(Model.SessionUser != null)
+{
+    <br />
+    <br />
+    <div class="mt-4"></div>
+
+	<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <form method="post" class="text-center mb-4" style="width: 300px; background-color: #ffffff; padding: 20px; border-radius: 5px; box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);">
+            
+    <div class="form-group">
+        <input type="hidden" name="id" class="form-control" asp-for="@Model.Recipe.Id">
+    </div>
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="title" class="form-control" placeholder="Recipe Title" asp-for="@Model.Recipe.Title">
+    </div>
+    <div class="form-group">
+        <input type="hidden" name="id_user" readonly class="form-control" value="@Model.SessionUser.Id" asp-for="@Model.SessionUser.Id">
+    </div>
+    <div class="form-group">
+        <label>Category</label>
+        <select name="category" class="form-control" asp-for="@Model.Category.Id">
+            <option >@Model.Category.Name</option>
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Difficulty</label>
+        <select name="difficulty" class="form-control"  asp-for="@Model.Difficulty.Id">
+            <option>@Model.Difficulty.Name</option>
+            @foreach (var difficulty in Model.Difficulties)
+            {
+					<option  value="@difficulty.Id">@difficulty.Name</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Preparation Method</label>
+        <textarea rows="4" name="preparation_methods" class="form-control" placeholder="Recipe Preparation Method" asp-for="@Model.Recipe.PreparationMethod"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Preparation Time</label>
+        <input type="number" name="preparation_time" class="form-control" placeholder="Recipe Preparation Time" asp-for="@Model.Recipe.PreparationTime">
+    </div>
+    <br />
+			<button type="submit" class="btn btn-primary" asp-for>Submit</button>
+            <a asp-area="" asp-page="/RecipeIngredients/Update" asp-route-id="@Model.Recipe.Id"> Update Ingredients </a>
+</form>
+    
+    </div>
+    
+}
+

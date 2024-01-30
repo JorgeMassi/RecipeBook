@@ -1,0 +1,49 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Recipes.RetrieveByModel
+@{
+}
+
+@if (Model.SessionUser != null)
+{
+	<div>
+		<div style="display: grid; grid-template-columns: auto auto auto;">
+			<table class="table table-striped table-dark display: list-group-item-dark;">
+				<tr>
+
+					<th scope="col">Title</th>
+					<th scope="col">Category</th>
+					<th scope="col">Difficulty</th>
+					<th scope="col">Prepatation Time</th>
+					<th scope="col">Preparation method</th>
+					<th scope="col">Ingredients</th>
+				</tr>
+					<tr>
+						<td scope="row">@Model.Recipe.Title</td>
+						<td>@Model.Recipe.Category.Name</td>
+						<td>@Model.Recipe.Difficulty.Name</td>
+						<td>@Model.Recipe.PreparationTime</td>
+						<td>@Model.Recipe.PreparationMethod</td>
+						<td>
+						<table class="table table-striped table-dark" style="display: grid; grid-template-columns: auto auto auto;">
+								<tr>
+									<th scope="col">Ingredient</th>
+									<th scope="col">Qtd</th>
+									<th scope="col">Measure</th>
+								</tr>
+								@foreach (var ingredient in @Model.Recipe.IngredientLine)
+								{
+									<tr>
+										<td> @ingredient.Ingredient.Name</td>
+										<td> @ingredient.Qtd</td>
+										<td> @ingredient.Measure.Name</td>
+									</tr>
+								}
+							</table>
+						</td>
+					</tr>
+				}
+			</table>
+			}
+		</div>
+	</div>
+}

@@ -1,0 +1,57 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.RecipeIngredients.UpdateModel
+@{
+}
+<table class="table table-striped table-dark">
+	<tr>
+		<th scope="col">#</th>
+		<th scope="col">Ingredient</th>
+		<th scope="col">Qtd</th>
+		<th scope="col">Measure</th>
+		<th scope="col">Actions</th>
+	</tr>
+	@foreach (var ingredient in Model.IngredientLines)
+	{
+		<tr>
+			<td scope="row">@ingredient.Id</td>
+			<td>@ingredient.Ingredient.Name</td>
+			<td>@ingredient.Qtd</td>
+			<td>@ingredient.Measure.Name</td>
+			<td>
+				<a class="fa-solid fa-trash" asp-area="" asp-page="/recipeIngredients/delete" asp-route-id="@ingredient.Id" asp-route-recipeId="@Model.Recipe.Id"></a>
+			</td>
+		</tr>
+	}
+</table>
+
+
+<div>
+	<form method="post">
+		<input type="hidden" name="id_recipe" class="form-control" asp-for="@Model.Recipe.Id">
+		<div class="form-group">
+			<label>Ingredient</label>
+			<select name="ingredient" class="form-control" asp-for="@Model.Ingredient.Name">
+				 <option>Select Ingredient</option>
+				@foreach (var ingredent in Model.Ingredients)
+				{
+					<option value="@ingredent.Name">@ingredent.Name</option>
+				}
+			</Select> 
+		</div>
+		<div class="form-group">
+			<label></label>
+			<select  name="measure" class="form-control"  asp-for="@Model.Measure.Name">
+			<option>Select Measure</option>
+			@foreach (var measure in Model.Measures)
+			{
+				<option value="@measure.Name">@measure.Name</option>
+			}
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Qtd</label>
+			<input type="text" name="qtd" class="form-control" placeholder="Ingredient Qtd" asp-for="@Model.IngredientLine.Qtd">
+		</div>
+		<button type="submit">Add Ingredients</button>
+	</form>
+</div>

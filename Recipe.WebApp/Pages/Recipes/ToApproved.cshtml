@@ -1,0 +1,58 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Recipes.ToApprovedModel
+@{
+}
+@if (Model.SessionUser != null || Model.SessionUser.IsAdmin == true || Model.Recipe.IsApproved == false)
+{
+	<br />
+	<br />
+	<div>
+		<div style="display: grid; grid-template-columns: auto auto auto;">
+			<table class="table table-striped table-dark display: list-group-item-dark;">
+				<tr>
+
+					<th scope="col">Title</th>
+					<th scope="col">Category</th>
+					<th scope="col">Difficulty</th>
+					<th scope="col">Prepatation Time</th>
+					<th scope="col">Preparation method</th>
+					<th scope="col">Ingredients</th>
+					<th scope="col">Action</th>
+				</tr>
+				@foreach (var recipe in Model.Recipes)
+				{
+					<tr>
+						<td scope="row">@recipe.Title</td>
+						<td>@recipe.Category.Name</td>
+						<td>@recipe.Difficulty.Name</td>
+						<td>@recipe.PreparationTime</td>
+						<td>@recipe.PreparationMethod</td>
+						<td>
+							<table class="table table-striped table-dark">
+								<tr>
+									<th scope="col">Ingredient</th>
+									<th scope="col">Qtd</th>
+									<th scope="col">Measure</th>
+								</tr>
+								@foreach (var ingredient in recipe.IngredientLine)
+								{
+									<tr>
+										<td> @ingredient.Ingredient.Name</td>
+										<td> @ingredient.Qtd</td>
+										<td> @ingredient.Measure.Name</td>
+									</tr>
+								}
+							</table>
+
+							<td>
+								<a class="fa-solid fa-pencil" asp-area="" asp-page="/recipes/ToApprovedUpdate" asp-route-id="@recipe.Id"></a>
+							</td>
+					</tr>
+				}
+			</table>
+		</div>
+	</div>
+}
+
+
+
