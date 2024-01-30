@@ -1,0 +1,16 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Ratings.UpdateModel
+@{
+}
+<form method="post">
+    <div class="form-group">
+        <label>Id</label>
+        <input type="text" name="id" class="form-control" value="@Model.Rating.Id" readonly asp-for="@Model.Rating.Id">
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" value="@Model.Rating.Name" asp-for="@Model.Rating.Name">
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

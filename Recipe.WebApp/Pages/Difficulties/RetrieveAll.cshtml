@@ -1,0 +1,43 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Difficulties.RetrieveAllModel
+@{
+}
+
+<div class="justify-items-center">
+	<div>
+		</br>
+
+		<table class="table table-striped table-dark">
+			<tr>
+				<th scope="col">Difficulty</th>
+
+				<th scope="col">Actions</th>
+			</tr>
+			@foreach (var difficulty in Model.Difficulties)
+			{
+				<tr>
+					<td scope="row">@difficulty.Name</td>
+					<td>
+						<a class="fa-solid fa-pencil" asp-area="" asp-page="/Difficulties/Update" asp-route-id="@difficulty.Id"></a> /
+						<a class="fa-solid fa-trash" asp-area="" asp-page="/difficulties/delete" asp-route-id="@difficulty.Id"></a>
+					</td>
+				</tr>
+			}
+		</table>
+
+	</div>
+
+	<div>
+		<form method="post">
+			<div class="form-group d-flex flex-column">
+				<label></label>
+				<input type="text" name="name" class="form-control" placeholder="Difficulty Name" asp-for="@Model.Difficulty.Name">
+			</div>
+			<br />
+			<button type="submit" class="btn btn-primary justify-content-center">Submit</button>
+		</form>
+
+	</div>
+
+</div>
+}

@@ -1,0 +1,56 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Ingredients.RetrieveAllModel
+@{
+}
+
+@if (Model.SessionUser != null || Model.SessionUser.IsAdmin == true)
+{
+	
+<div>
+	<div>
+		<br />
+		<br />
+		<br />
+		<table class="table table-striped table-dark">
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Name</th>
+				<th scope="col">Actions</th>
+			</tr>
+			@foreach (var ingredient in Model.Ingredients)
+			{
+				<tr>
+					<td scope="row">@ingredient.Id</td>
+					<td>@ingredient.Name</td>
+					<td>
+						<a class="fa-solid fa-pencil" asp-area="" asp-page="/ingredients/update" asp-route-id="@ingredient.Id"></a> /
+						<a class="fa-solid fa-trash" asp-area="" asp-page="/ingredients/delete" asp-route-id="@ingredient.Id"></a>
+
+					</td>
+				</tr>
+			}
+		</table>
+    </div>
+	<br />
+	<br />
+	<div >
+		<form method="post">
+			<div class="form-group">
+				<label></label>
+				<input type="text" name="name" class="form-control" placeholder="NEW INGREDIENT" asp-for="@Model.Ingredient.Name">
+			</div>
+			<br />
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+
+	</div>
+
+</div>
+
+}
+
+
+
+
+
+
