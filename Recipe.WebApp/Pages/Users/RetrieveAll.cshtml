@@ -1,0 +1,65 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Users.RetrieveAllModel
+@{
+}
+
+
+
+<div>
+	<div>
+		<br />
+		<br />
+		<br />
+		<table class="table table-striped table-dark">
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">UserName</th>
+				<th scope="col">Password</th>
+				<th scope="col">Name</th>
+				<th scope="col">Email</th>
+				<th scope="col">isAdmin</th>
+				<th scope="col">isBlocked</th>
+				<th scope="col">Actions</th>
+			</tr>
+			@foreach (var user in Model.Users)
+			{
+				<tr>
+					<td scope="row">@user.Id</td>
+					<td>@user.UserName</td>
+					<td>@user.Password</td>
+					<td>@user.Name</td>
+					<td>@user.Email</td>
+					<td>@user.IsAdmin</td>
+					<td>@user.IsBlocked</td>
+					<td>
+						<a class="fa-solid fa-pencil" asp-area="" asp-page="/users/update" asp-route-id="@user.Id"></a> /
+						<a class="fa-solid fa-trash" asp-area="" asp-page="/users/delete" asp-route-id="@user.Id"></a>
+
+					</td>
+				</tr>
+			}
+		</table>
+    </div>
+    <div>
+		<form method="post">
+			<div class="form-group">
+				<label></label>
+				<input type="text" name="username" class="form-control" placeholder="Username" asp-for="@Model.User.UserName">
+				<input type="text" name="password" class="form-control" placeholder="Password" asp-for="@Model.User.Password">
+				<input type="text" name="name" class="form-control" placeholder="Name" asp-for="@Model.User.Name">
+				<input type="text" name="email" class="form-control" placeholder="Email" asp-for="@Model.User.Email">
+				<input type="checkbox" name="isAdmin" class="form-check-input text" asp-for="@Model.User.IsAdmin">
+				<label class="form-check-label btn-outline-light" for="isAdmin">  isAdmin  </label>
+				<br />
+				<input type="checkbox" name="isBlock" class="form-check-input" asp-for="@Model.User.IsBlocked">
+				<label class="form-check-label btn-outline-light" for="isBlock">isBlock</label>
+
+			</div>
+			<br />
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+
+    </div>
+
+</div>
+

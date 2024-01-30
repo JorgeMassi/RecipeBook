@@ -1,0 +1,39 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.Users.Adm.RetrieveAllModel
+@{
+}
+
+<div>
+	<div>
+		<br />
+		<br />
+		<br />
+		<table class="table table-striped table-dark">
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">UserName</th>
+				<th scope="col">Password</th>
+				<th scope="col">Name</th>
+				<th scope="col">Email</th>
+				<th scope="col">isAdmin</th>
+				<th scope="col">isBlocked</th>
+				<th scope="col">Actions</th>
+			</tr>
+			@foreach (var user in Model.Users)
+			{
+				<tr>
+					<td scope="row">@user.Id</td>
+					<td>@user.UserName</td>
+					<td>@user.Password</td>
+					<td>@user.Name</td>
+					<td>@user.Email</td>
+					<td>@user.IsAdmin<a class="fa-solid fa-pencil" asp-area="" asp-page="/Users/Adm/IsAdminUpdate" asp-route-id="@user.Id"></a></td>
+					<td>@user.IsBlocked<a class="fa-solid fa-pencil" asp-area="" asp-page="/users/Adm/IsBlockedUpdate" asp-route-id="@user.Id"></a></td>
+					<td>
+						<a class="fa-solid fa-trash" asp-area="" asp-page="/Users/Adm/Delete" asp-route-id="@user.Id"></a>
+					</td>
+				</tr>
+			}
+		</table>
+	</div>
+</div>
