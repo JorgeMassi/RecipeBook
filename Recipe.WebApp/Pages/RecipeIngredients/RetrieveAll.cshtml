@@ -1,0 +1,37 @@
+﻿@page
+@model RecipeBook.WebApp.Pages.RecipeIngredients.RetrieveAllModel
+@{
+}
+<form method="get">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="search" name="Id" class="form-control" placeholder="Recipe id" asp-for="@Model.Ingredient.Recipe.Id">
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<br />
+<br />
+<br />
+<table class="table table-striped table-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Ingredient</th>
+        <th scope="col">Qtd</th>
+        <th scope="col">Measure</th>
+        <th scope="col">Actions</th>
+    </tr>
+    @foreach (var ingredient in Model.IngredientLines)
+    {
+        <tr>
+            <td scope="row">@ingredient.Id</td>
+            <td>@ingredient.Ingredient.Name</td>
+            <td>@ingredient.Qtd</td>
+            <td>@ingredient.Measure.Name</td>
+            <td>
+                <a class="fa-solid fa-pencil" asp-area="" asp-page="/recipeIngredients/update" asp-route-id="@ingredient.Id"></a> /
+                <a class="fa-solid fa-trash" asp-area="" asp-page="/recipeIngredients/delete" asp-route-id="@ingredient.Id"></a>
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - Recipe.WebApp</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="icon" href="/pot-of-food.svg" type="image/x-icon">
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/Recipe.WebApp.styles.css" asp-append-version="true" />
+	<script src="https://kit.fontawesome.com/0812556f3a.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+
+<body>
+	<header>
+		<aside id="sidebar-wrapper">
+			<div class="sidebar-brand">
+				<h2><a class="navbar-brand text-light " asp-area="" asp-page="/Index">RecipeBook</a></h2>
+			</div>
+			<ul class="sidebar-nav">
+				@if (Model.SessionUser is null)
+				{
+					<li class="active">
+						<a asp-area="" asp-page="/recipes/retrieveall"><i class="fa fa-cutlery"></i>Recipe</a>
+					</li>
+					<li>
+						<a asp-area="" asp-page="/Searching/SearchMenu"><i class="fa fa-search"></i>Search</a>
+					</li>
+					<li>
+						<a asp-area="" asp-page="/Logins/logins"><i class="fa fa-sign-in"></i>LOGIN</a>
+					</li>
+				}
+				else
+				{
+					<li>
+						<a asp-area="" asp-page="/recipes/retrieveall"><i class="fa fa-cutlery"></i>Recipe</a>
+					</li>
+					<li>
+						<a asp-area="" asp-page="/Searching/SearchMenu"><i class="fa fa-search"></i>Search</a>
+					</li>
+					<li>
+						<a asp-area="" asp-page="/Logins/Logout"><i class="fa fa-sign-out"></i>LOGOUT</a>
+					</li>
+					<li>
+						<a asp-area="" asp-page="/Users/UserManager">
+							<i class="fa fa-solid fa-user-secret"></i> hi,
+							@Model.SessionUser.UserName
+						</a>
+					</li>
+				}
+			</ul>
+		</aside>
+		
+		<div id="content" style=" background-image: url('https://source.unsplash.com/random/?food');">
+			<section id="content-wrapper">
+				@RenderBody()
+			</section>
+		</div>
+	</header>
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
